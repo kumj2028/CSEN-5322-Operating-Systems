@@ -19,6 +19,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define DEBUG true             /* debug flag for printing debug statments */
 #define MAXCHAR 1024           /* max number of characters per line in input file */
 #define MAXROW 100             /* max number of rows in a matrix */
 #define MAXCOL 100             /* max number of cols in a matrix */
@@ -197,7 +198,8 @@ int main (int argc, char *argv[])
                 i += 1;
             }
         }
-
+        fclose(file);
+        #if DEBUG
         printf("\nMatrix A:\n");
         for (i=0; i<nra; i++)
         {
@@ -215,7 +217,7 @@ int main (int argc, char *argv[])
                 printf("%6.2f   ", b[j][i]);
         }
         printf("\n******************************************************\n");
-
+        #endif
 
         /* Send matrix data to the worker tasks */
         averow = nra/numworkers;
@@ -247,7 +249,8 @@ int main (int argc, char *argv[])
                     MPI_COMM_WORLD, &status);
             printf("Received results from task %d\n",source);
         }
-
+        
+        #if DEBUG
         /* Print results */
         printf("******************************************************\n");
         printf("Result Matrix:\n");
@@ -258,11 +261,26 @@ int main (int argc, char *argv[])
                 printf("%6.2f   ", c[i][j]);
         }
         printf("\n******************************************************\n");
+        #endif
+
+        FILE *output = fopen("output.txt", "w+");
+        for (i=0; i<nra; i++)
+        {
+            for (j=0; j<ncb; j++)
+            {
+                if (j == ncb - 1)
+                    fprintf(output, "%f", c[i][j]);
+                else
+                    fprintf(output, "%f,", c[i][j]);
+            }
+            if (i < nra - 1)
+                fprintf(output, "\n");
+        }
+        fclose(output);
+
         printf ("Done.\n");
         endwtime = MPI_Wtime();
         printf("wall clock time = %f\n", endwtime-startwtime);
-        fflush(stdout);
-        return 0;
     }
 
 
