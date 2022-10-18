@@ -1,0 +1,18 @@
+3.45, -5.12, 2.056, -19.1
+1.23, 0.9,   6.2,    10
+9.57, 9.01, -2.056, 2.39
+
+5.43, -12.5, 65.02, -1.1, 6.20
+3.21, -9.02,  4.56, -11.22, 4.01
+5.82, 1.08, -2.056, -23.45, -13.72
+83.47, 56.10, 4.2832, 42.2, -2.34
+
+Note: We need to follow the format of this input file for other possible input files. 
+Two matrices are separated by an empty line.
+Each matric element is separated by comma ','.
+Each elements are real numbers.
+
+N= size of the elements of the final matrix. 
+Since here the matrices are 3x4 and 4x5, thus the final will be 3 x 5.
+   Therefore, N = 15.
+
