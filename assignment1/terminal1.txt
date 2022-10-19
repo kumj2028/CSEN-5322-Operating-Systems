@@ -20,36 +20,12 @@ Matrix B:
   5.82     1.08    -2.06   -23.45   -13.72
  83.47    56.10     4.28    42.20    -2.34
 ******************************************************
-MASTER: Sending (row, col): (0, 0) to worker 1
-MASTER: Sending (row, col): (0, 1) to worker 2
-MASTER: Sending (row, col): (0, 2) to worker 3
-MASTER: Received (row, col): (0, 0) with value: -1580.012780 from worker 1
-MASTER: Received (row, col): (0, 1) with value: -1066.232120 from worker 2
-MASTER: Received (row, col): (0, 2) with value: 114.935544 from worker 3
-MASTER: Sending (row, col): (0, 3) to worker 1
-MASTER: Sending (row, col): (0, 4) to worker 2
-MASTER: Sending (row, col): (1, 0) to worker 3
-MASTER: Received (row, col): (0, 3) with value: -800.581800 from worker 1
-MASTER: Received (row, col): (0, 4) with value: 17.344480 from worker 2
-MASTER: Received (row, col): (1, 0) with value: 880.351900 from worker 3
-MASTER: Sending (row, col): (1, 1) to worker 1
-MASTER: Sending (row, col): (1, 2) to worker 2
-MASTER: Sending (row, col): (1, 3) to worker 3
-MASTER: Received (row, col): (1, 1) with value: 544.203000 from worker 1
-MASTER: Received (row, col): (1, 2) with value: 114.163400 from worker 2
-MASTER: Received (row, col): (1, 3) with value: 265.159000 from worker 3
-MASTER: Sending (row, col): (1, 4) to worker 1
-MASTER: Sending (row, col): (2, 0) to worker 2
-MASTER: Sending (row, col): (2, 1) to worker 3
-MASTER: Received (row, col): (1, 4) with value: -97.229000 from worker 1
-MASTER: Received (row, col): (2, 0) with value: 268.414580 from worker 2
-MASTER: Received (row, col): (2, 1) with value: -69.036680 from worker 3
-MASTER: Sending (row, col): (2, 2) to worker 1
-MASTER: Sending (row, col): (2, 3) to worker 2
-MASTER: Sending (row, col): (2, 4) to worker 3
-MASTER: Received (row, col): (2, 2) with value: 677.790984 from worker 1
-MASTER: Received (row, col): (2, 3) with value: 37.452000 from worker 2
-MASTER: Received (row, col): (2, 4) with value: 118.079820 from worker 3
+Sending 1 rows to task 1 offset=0
+Sending 1 rows to task 2 offset=1
+Sending 1 rows to task 3 offset=2
+Received results from task 1
+Received results from task 2
+Received results from task 3
 ******************************************************
 Result Matrix:
 
@@ -57,5 +33,5 @@ Result Matrix:
 880.35   544.20   114.16   265.16   -97.23
 268.41   -69.04   677.79    37.45   118.08
 ******************************************************
-Master done.
-wall clock time = 0.003097
+Done.
+wall clock time = 0.003205
