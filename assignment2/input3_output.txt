@@ -2,4 +2,4 @@ Process 1 needs resource 1 - Resource 1 is allocated to process 1.
 Process 2 needs resource 2 - Resource 2 is allocated to process 2.
 Process 1 needs resource 2 - Process 1 must wait.
 Process 2 needs resource 1 - Process 2 must wait.
-DEADLOCK DETECTED: Processes 1, 2 and Resources 2, 1 are found in a cycle.
+DEADLOCK DETECTED: Processes 2, 1 and Resources 2, 1 are found in a cycle.
