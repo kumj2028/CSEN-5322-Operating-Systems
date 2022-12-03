@@ -1,0 +1,249 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to writeLaTeX --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you give
+% someone the link to this page, they can edit at the same
+% time. See the help menu above for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning}
+
+\usepackage{enumitem}
+
+\tikzset{ell/.style={circle,draw,minimum height=0.5cm,minimum width=0.5cm,inner sep=0.2cm}}
+\tikzset{rec/.style={rectangle,draw,minimum height=0.5cm,minimum width=0.5cm,inner sep=0.2cm}}
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Final Exam}%replace X with the appropriate number
+\author{Mengxiang Jiang\\ %replace with your name
+CSEN 5322 Operating Systems} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{1} %You can use theorem, exercise, problem, or question here.  Modify x.yz to be whatever number you are proving
+  Assume p and q are two large prime number - what are the steps in RSA algorithm
+  to form a private key as well as a public key?
+
+  \begin{enumerate}
+    \item Choose large prime numbers $p$ and $q$
+    \item Compute the product $n = p \times q$ and the product $z = (p-1)\times (q-1)$
+    \item Choose a number relatively prime to $z$ and call it $d$
+    \item Find $e$ such that $e \times d \equiv 1 \pmod{z}$
+    \item To encrypt a message $P$, compute $C \equiv P^e \pmod{n}$.\\
+    To decrypt $C$, compute $P \equiv C^d \pmod{n}$
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{2}
+  Consider a swapping system in which memory consists of the following
+hole sizes in memory order: 10 KB, 4 KB, 20KB, 18 KB, 7 KB, 9 KB, 12 KB, and 15 KB. Which
+hole is taken for successive segment request of 12 KB, 10 KB and 9 KB, for (a) first fit, (b) best
+fit, (c) worst fit and (d) next fit
+
+  \begin{enumerate}[label=(\alph*)]
+    \item first fit:\\
+    \begin{tabular}[b]{|c|c|c|c|}
+      \hline
+      segment & 12 KB & 10 KB & 9 KB\\
+      \hline
+      hole & 20 KB & 10 KB & 18 KB\\
+      \hline
+    \end{tabular}
+    \item best fit:\\
+    \begin{tabular}[b]{|c|c|c|c|}
+      \hline
+      segment & 12 KB & 10 KB & 9 KB\\
+      \hline
+      hole & 12 KB & 10 KB & 9 KB\\
+      \hline
+    \end{tabular}
+    \item worst fit:\\
+    \begin{tabular}[b]{|c|c|c|c|}
+      \hline
+      segment & 12 KB & 10 KB & 9 KB\\
+      \hline
+      hole & 20 KB & 18 KB & 15 KB\\
+      \hline
+    \end{tabular}
+  \end{enumerate}
+\end{problem}
+\pagebreak
+\begin{problem}{3}
+  (a) Suppose that two strangers A and B want to communicate with each
+other using secret-key cryptography, but do not share a key. Suppose both of them trust a thirdparty C whose public key is well known. How can the two strangers establish a new shared secret
+key under these circumstances? (b) In the UNIX password system, what is salt and how does it
+help defeat password cracking?
+
+  \begin{enumerate}[label=(\alph*)]
+    \item A can use public key cryptography sytem (like RSA) to communicate a secret key to C and have C also use the public key system to communicate A's secret key to B.\\
+    \item Salt is an additional randomly generated string that's concatenated to a user's password before hashing. 
+    It only defends against dictionary attacks on all users rather than a targeted attack on a single user, since now crackers who knows a lot of passwords but not the user they belong to 
+    cannot simply perform hashing and compare the password hashes.
+  \end{enumerate}
+\end{problem}
+\begin{problem}{4}
+  (a) RAID level 3 is able to correct single bit errors using only one parity
+drive. What is the point of RAID level 2? After all, it also only correct one error and takes more
+drives to do so. (b) Mention one advantage of hard links over symbolic links and advantage of
+symbolic links over hard links.
+  \begin{enumerate}[label=(\alph*)]
+    \item RAID 2's Hamming code can pinpoint exactly which bit errored while RAID 3 does not (in practice disks can often know its malfunctioning due to checksums so RAID 3's error detection is correlated to error correction but not strictly equivalent)
+    \item Soft/symbolic links can link to files on remote computers as well as directories while hard links can only link to files on the same computer. Hard links however still exists even if you delete, move, or rename the original file while symbolic/soft links become meaningless.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{5}
+  How many disk operations are needed to fetch the i-node for the file\\
+$/usr/uno/courses/os/slide7.ppt$? Assume that the i-node for the root directory is in memory, but
+nothing else along the path is in memory. Also, assume that all directories fit in one disk block.\\\\
+directory for /\\
+i-node for /usr\\
+directory for /usr\\
+i-node for /usr/uno\\
+directory for /usr/uno\\
+i-node for /usr/uno/courses\\
+directory for /usr/uno/courses\\
+i-node for /usr/uno/courses/os\\
+directory for /usr/uno/courses/os\\
+i-node for /usr/uno/courses/os/slide7.ppt\\
+Total 10 disk reads.
+\end{problem}
+\pagebreak
+\begin{problem}{6}
+  What is a journaling file system and what is it used for?
+  \begin{quote}
+    Journaling keeps a log of the transaction to be performed on a disk write. 
+    This allows recovery of the file system in case of a crash or power outage by retrying incomplete transactions.
+  \end{quote}
+\end{problem}
+
+\begin{problem}{7}
+  Consider a disk where seek time dominates rotational latency and transfer
+time. Hence, we only care about how many tracks need to seek over to service our requests.
+Cylinders on the disk are numbered from 0 (innermost) to 20 (outermost). The disk head currently
+resides on cylinder 8. Consider the start of servicing disk request to be time 0. Count time in
+number of seeks and calculate the number of seeks required to service the following requests under
+the given scheduling algorithms. Also calculate the average seek time per request.\\
+\begin{tabular}[b]{|c|c|c|}
+  \hline
+  REQUEST NAME & REQUEST ARRIVES & CYLINDER REQUESTED\\
+  \hline
+  A & after 0 seeks & 12\\
+  \hline
+  B & after 0 seeks & 4\\
+  \hline
+  C & after 0 seeks & 10\\
+  \hline
+  D & after 0 seeks & 2\\
+  \hline
+  E & after 8 seeks & 20\\
+  \hline
+  F & after 8 seeks & 3\\
+  \hline
+  G & after 8 seeks & 17\\
+  \hline
+  H & after 14 seeks & 4\\
+  \hline
+\end{tabular}
+\\Use (a) Shortest Seek First (SSF) algorithm and (b) Elevator algorithm (SCAN), considering
+the initial movement of the disk head to go inward from cylinder 8.
+  \begin{enumerate}[label=(\alph*)]
+    \item shortest seek first:\\
+    \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      name & C & A & B & F & D & H & G & E\\
+      \hline
+      required time & 2 & 2& 8 & 1 & 1 & 2 & 13 & 3\\
+      \hline
+      total time & 2 & 4 & 12 & 13 & 14 & 16 & 29 & 32\\
+      \hline
+    \end{tabular}
+    average time = 32/8 = 4
+    \item elevator:\\
+    \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      name & B & D & C & A & G & E & H & F\\
+      \hline
+      required time & 4 & 2& 8 & 2 & 5 & 3 & 16 & 1\\
+      \hline
+      total time & 4 & 6 & 14 & 16 & 21 & 24 & 40 & 41\\
+      \hline
+    \end{tabular}
+    average time = 41/8 = 5.125
+  \end{enumerate}
+
+\end{problem}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
